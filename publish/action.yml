@@ -14,6 +14,10 @@ inputs:
     description: path format for publishing to artifactory
     required: false
     default: '{repository}/{package}{subproject}/{version}{branchtag-uc}/'
+  publish-file-format:
+    description: format for the file name published to artifactory
+    required: false
+    default: '{filename}-{publishversion}{fileext}'
 
 runs:
   using: 'node12'
