@@ -43,11 +43,12 @@ runs:
 
     - name: 'determine current branch or PR'
       run: |
-        if [ -z ${{ github.event.pull_request.number }} ]
+        PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+        if [[ -z "$PR_NUMBER" ]]
         then
           echo CURRENT_BRANCH=${GITHUB_REF#refs/heads/} >> $GITHUB_ENV
         else
-          echo CURRENT_BRANCH=PR-${{ github.event.pull_request.number }} >> $GITHUB_ENV
+          echo CURRENT_BRANCH=PR-$PR_NUMBER >> $GITHUB_ENV
         fi
       shell: bash
     
